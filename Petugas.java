@@ -13,13 +13,15 @@ public class Petugas {
         this.password = password;
     }
 
+    // === Login ===
     public boolean login(String username, String password) {
         return this.username.equals(username) && this.password.equals(password);
     }
 
+    // === Input data baru ===
     public void tambahData(Scanner scanner) {
-        System.out.println("=== Tambah Data Petugas ===");
-        System.out.print("ID: ");
+        System.out.println("\n=== Tambah Data Petugas ===");
+        System.out.print("ID Petugas: ");
         this.id = scanner.nextLine();
         System.out.print("Nama: ");
         this.nama = scanner.nextLine();
@@ -30,24 +32,25 @@ public class Petugas {
         System.out.println("Petugas berhasil ditambahkan!\n");
     }
 
-    public void ubahData(Scanner scanner) {
-        System.out.println("=== Ubah Data Petugas ===");
-        System.out.print("Nama baru: ");
-        this.nama = scanner.nextLine();
-        System.out.print("Username baru: ");
-        this.username = scanner.nextLine();
-        System.out.print("Password baru: ");
-        this.password = scanner.nextLine();
-        System.out.println("Data petugas berhasil diubah!\n");
+    // === Hapus data petugas berdasarkan ID ===
+    public boolean hapusData(String id) {
+        return this.id.equals(id);
     }
 
-    public void hapusData(String id) {
-        if (this.id.equals(id)) {
-            System.out.println("Petugas dengan ID " + id + " berhasil dihapus.");
-        }
+    // === Getter ===
+    public String getId() {
+        return id;
     }
 
     public String getNama() {
         return nama;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }

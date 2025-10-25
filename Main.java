@@ -5,6 +5,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         AplikasiInventaris app = new AplikasiInventaris();
 
+        // Tambah admin default
         app.kelolaPetugas(scanner);
 
         boolean loginSuccess = false;
@@ -27,41 +28,45 @@ public class Main {
         }
 
         int pilihan;
+        boolean keluar = false;
         do {
-            System.out.println("=== Menu Utama ===");
-            System.out.println("1. Kelola Barang");
-            System.out.println("2. Transaksi Masuk");
-            System.out.println("3. Transaksi Keluar");
-            System.out.println("4. Laporan Stok");
-            System.out.println("5. Riwayat Transaksi");
-            System.out.println("0. Keluar");
+            System.out.println("\n=== Menu Utama ===");
+            System.out.println("1. Petugas");
+            System.out.println("2. Kelola Barang");
+            System.out.println("3. Laporan Stok");
+            System.out.println("4. Riwayat Transaksi"); 
+            System.out.println("5. Keluar");
             System.out.print("Pilih menu: ");
             pilihan = scanner.nextInt();
             scanner.nextLine();
 
             switch (pilihan) {
                 case 1:
+                    app.KelolaPetugas(scanner);
+                    break;               
+                case 2:
                     app.kelolaBarang(scanner);
                     break;
-                case 2:
-                    app.kelolaTransaksiMasuk(scanner);
-                    break;
                 case 3:
-                    app.kelolaTransaksiKeluar(scanner);
-                    break;
-                case 4:
                     app.kelolaLaporan();
                     break;
-                case 5:
+                case 4:
                     app.kelolaRiwayat();
                     break;
-                case 0:
-                    System.out.println("Terima kasih!");
-                    break;
+                case 5:
+                    System.out.print("Apakah Anda yakin ingin keluar? (y/n): ");
+                    String konfirmasi = scanner.nextLine();
+                    if (konfirmasi.equalsIgnoreCase("y")) {
+                        keluar = true;
+                        System.out.println("Terima kasih telah menggunakan Aplikasi Inventaris Barang!");
+                    } else {
+                        System.out.println("Kembali ke menu utama...");
+                    }
+                    break;                    
                 default:
-                    System.out.println("Pilihan tidak valid.");
+                    System.out.println("Pilihan tidak valid, silakan coba lagi.");
             }
-        } while (pilihan != 0);
+        } while (!keluar);
 
         scanner.close();
     }
